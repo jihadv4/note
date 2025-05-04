@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NoteShare - Upload Note</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <style>
+        .animated-select {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .animated-select:hover {
+            border-color: var(--primary-color);
+        }
+        
+        .loading-indicator {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+            margin-top: 0.5rem;
+            display: none;
+        }
+        
+        .form-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .form-actions .btn {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .form-actions .btn::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: -100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: all 0.3s ease;
+        }
+        
+        .form-actions .btn:hover::after {
+            left: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-book-open"></i>
+                <h1>NoteShare</h1>
+            </div>
+            <div class="user-info">
+                <div class="user-details">
+                    <span id="user-name"></span>
+                    <span id="user-role" class="badge"></span>
+                </div>
+                <button id="logout-btn" class="btn btn-outline">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="container main-content">
+        <div class="upload-container">
+            <h2><i class="fas fa-upload"></i> Upload New Note</h2>
+            <div id="upload-message" class="message"></div>
+            <form id="upload-form">
+                <div class="form-group">
+                    <label for="note-title">
+                        <i class="fas fa-heading"></i> Title
+                    </label>
+                    <input type="text" id="note-title" name="title" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="note-year">
+                            <i class="fas fa-calendar-alt"></i> Year
+                        </label>
+                        <select id="note-year" name="year" required class="animated-select">
+                            <option value="">Select Year</option>
+                            <option value="1st">1st Year</option>
+                            <option value="2nd">2nd Year</option>
+                            <option value="3rd">3rd Year</option>
+                            <option value="4th">4th Year</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="note-semester">
+                            <i class="fas fa-calendar-day"></i> Semester
+                        </label>
+                        <select id="note-semester" name="semester" required class="animated-select">
+                            <option value="">Select Semester</option>
+                            <option value="1st">1st Semester</option>
+                            <option value="2nd">2nd Semester</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="note-course">
+                        <i class="fas fa-book"></i> Course
+                    </label>
+                    <select id="note-course" name="course" required class="animated-select">
+                        <option value="">Select Course</option>
+                        <!-- Course options will be populated dynamically -->
+                    </select>
+                    <div id="course-loading" class="loading-indicator">
+                        <i class="fas fa-spinner fa-spin"></i> Loading courses...
+                    </div>
+                    <small class="help-text">Courses will be filtered based on selected year and semester</small>
+                </div>
+                
+                <div class="form-group">
+                    <label for="drive-link">
+                        <i class="fab fa-google-drive"></i> Google Drive Link
+                    </label>
+                    <input type="url" id="drive-link" name="driveLink" required placeholder="https://drive.google.com/file/d/FILE_ID/view?usp=sharing">
+                    <small class="help-text">Paste a shareable Google Drive link to your PDF file</small>
+                    <button type="button" id="validate-link" class="btn btn-outline btn-sm">
+                        <i class="fas fa-check-circle"></i> Validate Link
+                    </button>
+                    <div id="link-status"></div>
+                </div>
+                
+                <div class="upload-progress" id="upload-progress">
+                    <div class="progress-bar" id="progress-bar"></div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-cloud-upload-alt"></i> Upload Note
+                    </button>
+                    <a href="dashboard.html" class="btn btn-outline">
+                        <i class="fas fa-arrow-left"></i> Back to Dashboard
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+id,name,year,semester
+AMAT-1101,Fundamental of Mathematics,1st,1st
+AMAT-1102,Algebra and Trigonometry,1st,1st
+AMAT-1103,Differential Calculus,1st,1st
+AMAT-1104,Matrix Theory,1st,1st
+PHYS-1110,"Mechanics, Properties of Matter, Wave and Sound",1st,1st
+STAT-1111,Fundamentals of Statistics,1st,1st
+AMAT1120,Practical (Using MATLAB),1st,1st
+AMAT-1201,Geometry of Two Dimensions,1st,2nd
+AMAT-1202,Vector Analysis,1st,2nd
+AMAT1203,Integral Calculus,1st,2nd
+AMAT-1204,Linear Algebra,1st,2nd
+PHYS-1210,Electricity and Magnetism,1st,2nd
+STAT-1211,Theory of Probability,1st,2nd
+AMAT1220,Practical ( Using Mathematica),1st,2nd
+ENG1222,Functional English,1st,2nd
+AMAT2101,Advanced Calculus,2nd,1st
+AMAT2102,Geometry of Three Dimensions,2nd,1st
+AMAT2103,Ordinary Differential Equations with Modeling,2nd,1st
+AMAT2104,Tensor Analysis,2nd,1st
+PHYS2110,Heat and Thermodynamics,2nd,1st
+STAT2111,Sample Survey and Demography,2nd,1st
+AMAT2120,Practical (Using MATLAB),2nd,1st
+AMAT2201,Abstract Algebra,2nd,2nd
+AMAT2202,Mechanics,2nd,2nd
+CSE2210,Discrete Mathematics and Graph Theory,2nd,2nd
+CSE2211,Python Programing,2nd,2nd
+PHYS2212,Optics and Modern Physics,2nd,2nd
+STAT2213,Mathematical Statistics,2nd,2nd
+AMAT2220,Practical (Using Python),2nd,2nd
+AMAT2221,Viva-Voce,2nd,2nd
+AMAT3101,Real Analysis,3rd,1st
+AMAT3102,Complex Analysis,3rd,1st
+AMAT3103,Partial Differential Equations,3rd,1st
+AMAT3104,Methods of Applied Mathematics,3rd,1st
+AMAT3105,Numerical Analysis,3rd,1st
+CSE3110,Programming with C++,3rd,1st
+AMAT3120,Practical (Function Oriented C++),3rd,1st
+AMAT3201,Hydrodynamics,3rd,2nd
+AMAT3202,Classical Mechanics,3rd,2nd
+AMAT3203,Stochastic Calculus,3rd,2nd
+AMAT3204,Topology,3rd,2nd
+AMAT3205,Integral Equations,3rd,2nd
+PHYS3210,Electrodynamics,3rd,2nd
+AMAT3220,Practical (Object Oriented C++),3rd,2nd
+AMAT3221,Viva-Voce,3rd,2nd
+AMAT4101,Fluid Dynamics,4th,1st
+AMAT4102,Quantum Mechanics,4th,1st
+AMAT4103,Advanced Numerical Analysis,4th,1st
+AMAT4104,Differential Geometry,4th,1st
+AMAT4105,Financial Mathematics,4th,1st
+IENG4110,Optimization Techniques,4th,1st
+AMAT4120,"Practical (Advanced Numerical Analysis, Using C++)",4th,1st
+AMAT4201,Special Theory of Relativity,4th,2nd
+AMAT4202,Astronomy,4th,2nd
+AMAT4203,Continuum Mechanics,4th,2nd
+AMAT4204,Functional Analysis,4th,2nd
+AMAT4205,Econometrics,4th,2nd
+AMAT4206,Physical Meteorology,4th,2nd
+CSE4210,Data Science and Machine Learning,4th,2nd
+AMAT4219,Project,4th,2nd
+AMAT4220,"Practical (Data Science and Machine Learning, Using Python)",4th,2nd
+AMAT4221,Viva-Voce,4th,2nd

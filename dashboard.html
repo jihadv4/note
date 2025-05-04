@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NoteShare - Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <style>
+        .animated-select {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .animated-select:hover {
+            border-color: var(--primary-color);
+        }
+        
+        .loading-indicator {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+            margin-top: 0.5rem;
+            display: none;
+        }
+        
+        .filter-actions {
+            margin-top: 1.5rem;
+        }
+        
+        .filter-actions .btn {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .filter-actions .btn::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: -100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: all 0.3s ease;
+        }
+        
+        .filter-actions .btn:hover::after {
+            left: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-book-open"></i>
+                <h1>NoteShare</h1>
+            </div>
+            <div class="user-info">
+                <div class="user-details">
+                    <span id="user-name"></span>
+                    <span id="user-role" class="badge"></span>
+                </div>
+                <button id="logout-btn" class="btn btn-outline">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="container main-content">
+        <aside class="sidebar">
+            <div class="actions">
+                <a href="upload.html" class="btn btn-primary btn-block">
+                    <i class="fas fa-upload"></i> Upload New Note
+                </a>
+                <div id="admin-panel" class="admin-section" style="display: none;">
+                    <h3><i class="fas fa-shield-alt"></i> Admin Panel</h3>
+                    <button id="export-notes" class="btn btn-secondary btn-block">
+                        <i class="fas fa-file-export"></i> Export Notes
+                    </button>
+                </div>
+            </div>
+
+            <div class="filters">
+                <h3><i class="fas fa-filter"></i> Filter Notes</h3>
+                <div class="form-group">
+                    <label for="year-filter">
+                        <i class="fas fa-calendar-alt"></i> Year
+                    </label>
+                    <select id="year-filter" class="animated-select">
+                        <option value="">All Years</option>
+                        <option value="1st">1st Year</option>
+                        <option value="2nd">2nd Year</option>
+                        <option value="3rd">3rd Year</option>
+                        <option value="4th">4th Year</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="semester-filter">
+                        <i class="fas fa-calendar-day"></i> Semester
+                    </label>
+                    <select id="semester-filter" class="animated-select">
+                        <option value="">All Semesters</option>
+                        <option value="1st">1st Semester</option>
+                        <option value="2nd">2nd Semester</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="course-filter">
+                        <i class="fas fa-book"></i> Course
+                    </label>
+                    <select id="course-filter" class="animated-select">
+                        <option value="">All Courses</option>
+                        <!-- Course options will be populated dynamically -->
+                    </select>
+                    <div id="course-loading" class="loading-indicator">
+                        <i class="fas fa-spinner fa-spin"></i> Loading courses...
+                    </div>
+                </div>
+                <div class="filter-actions">
+                    <button id="apply-filters" class="btn btn-primary">
+                        <i class="fas fa-check"></i> Apply
+                    </button>
+                    <button id="clear-filters" class="btn btn-outline">
+                        <i class="fas fa-times"></i> Clear
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <main class="content">
+            <div class="notes-header">
+                <h2><i class="fas fa-book"></i> Academic Notes</h2>
+                <div class="search-container">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="search-notes" placeholder="Search notes...">
+                </div>
+            </div>
+            <div id="active-filters" class="active-filters"></div>
+            <div id="notes-container" class="notes-grid"></div>
+        </main>
+    </div>
+
+    <!-- Note Viewer Modal -->
+    <div id="note-viewer-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-note-title"></h2>
+                <span class="close-modal"><i class="fas fa-times"></i></span>
+            </div>
+            <div class="modal-body">
+                <div id="note-details" class="note-details"></div>
+                <div class="note-iframe-container">
+                    <iframe id="note-iframe" width="100%" height="600px" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="delete-modal" class="modal">
+        <div class="modal-content modal-sm">
+            <div class="modal-header">
+                <h2><i class="fas fa-trash-alt"></i> Delete Note</h2>
+                <span class="close-modal"><i class="fas fa-times"></i></span>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete this note? This action cannot be undone.</p>
+                <div class="form-actions">
+                    <button id="confirm-delete" class="btn btn-danger">
+                        <i class="fas fa-trash-alt"></i> Delete
+                    </button>
+                    <button class="btn btn-outline close-modal">
+                        <i class="fas fa-times"></i> Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
