@@ -69,4 +69,4 @@ This allows the note to be embedded directly in the website.
 
 ## Security Note
 
-This setup is fine for internal or educational use. It doesn't protect the CSV or notes from tampering if users inspect the page. For a production environment, a proper backend with authentication would be recommended.
+This setup is fine for internal or educational use. It doesn't protect the CSV or notes from tampering if users inspect the page.
