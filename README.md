@@ -14,9 +14,7 @@ A simple web-based academic note-sharing platform built with HTML, CSS, and Java
 
 1. Clone or download this repository
 2. Open the `index.html` file in your web browser
-3. Login using one of the following credentials:
-   - Regular User: `john123` / `pass123`
-   - Admin: `sara_admin` / `admin456`
+
 
 ## Usage
 
@@ -50,7 +48,7 @@ Each note contains:
 - Title
 - Year (1st, 2nd, 3rd, 4th)
 - Semester (1st, 2nd)
-- Course (e.g., "Math 101")
+- Course (e.g., "AMAT 1101")
 - Google Drive embed link
 - Uploader information
 - Upload date
