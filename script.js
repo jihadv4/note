@@ -79,42 +79,6 @@ function loadNotes() {
   } else {
     // Initialize with sample notes if none exist
     notes = [
-      {
-        id: 1,
-        title: "Calculus I Introduction",
-        year: "1st",
-        semester: "1st",
-        course: "Math 101",
-        driveLink: "https://drive.google.com/file/d/1BaUZdQnJF9atXuBFYpnZbM2Rn1UDCiVK/view",
-        embedLink: "https://drive.google.com/file/d/1BaUZdQnJF9atXuBFYpnZbM2Rn1UDCiVK/preview",
-        uploader: "john123",
-        uploaderName: "John Smith",
-        uploadDate: "2023-09-15",
-      },
-      {
-        id: 2,
-        title: "Introduction to Programming",
-        year: "1st",
-        semester: "1st",
-        course: "CS 101",
-        driveLink: "https://drive.google.com/file/d/1C8UzW4mKRs1yCO-2YpuN67U0Fyfp3GRs/view",
-        embedLink: "https://drive.google.com/file/d/1C8UzW4mKRs1yCO-2YpuN67U0Fyfp3GRs/preview",
-        uploader: "sara_admin",
-        uploaderName: "Sara Admin",
-        uploadDate: "2023-09-10",
-      },
-      {
-        id: 3,
-        title: "Physics Mechanics",
-        year: "1st",
-        semester: "2nd",
-        course: "Physics 101",
-        driveLink: "https://drive.google.com/file/d/1DfGbRT4iXyY8Vw3HYU5Sjpn2JaYwC9pL/view",
-        embedLink: "https://drive.google.com/file/d/1DfGbRT4iXyY8Vw3HYU5Sjpn2JaYwC9pL/preview",
-        uploader: "john123",
-        uploaderName: "John Smith",
-        uploadDate: "2023-10-05",
-      },
     ]
     saveNotes()
   }
